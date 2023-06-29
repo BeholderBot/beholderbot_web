@@ -4,7 +4,7 @@ import * as THREE from 'three'
 import { Sparkles, Shadow, ContactShadows, Billboard, Environment, BakeShadows, OrbitControls } from '@react-three/drei'
 import { LayerMaterial, Depth } from 'lamina'
 import crossTexture from './circle1.jpg'
-function Sphere3d({color = 'white', amount = 50, emissive, size = 2, ...props}) {
+function SphereEye({color = 'white', amount = 50, emissive, size = 2, ...props}) {
   // This reference gives us direct access to the THREE.Mesh object
   const ref = useRef();
   const sparklesRef = useRef();
@@ -36,11 +36,13 @@ function Sphere3d({color = 'white', amount = 50, emissive, size = 2, ...props}) 
         </sphereGeometry>
     <meshStandardMaterial roughness={0} metalness = {0.1} color={color} emissive={emissive || color} envMapIntensity={0.2}/>
   
-  
+       
+        <meshBasicMaterial map={new THREE.TextureLoader().load(crossTexture)} transparent={true} />
+     
     {/* <Sparkles ref = {sparklesRef} count={amount} scale={size * 4} size={10} speed={0.8} /> */}
     <Shadow rotation={[-Math.PI / 2, 0, 0]} scale={size} position={[0, -size, 0]} color={emissive} opacity={0.5} />
   </mesh>
   );
 }
  
-export default Sphere3d;
+export default SphereEye;

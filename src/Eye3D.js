@@ -14,6 +14,8 @@ function Eye3d() {
   const toggleEyelid = () => {
     setEyelidOpen(!eyelidOpen);
   };
+  
+  
 
   useFrame(({ clock }) => {
     if (eyeRef.current && eyelidRef.current) {

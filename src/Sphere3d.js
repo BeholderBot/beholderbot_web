@@ -18,7 +18,6 @@ function Sphere3d({color = 'white', amount = 50, emissive, size = 2, ...props}) 
     // Calculate the floating animation
     ref.current.position.y = initialY.current + Math.sin(clock.elapsedTime) * 0.3; // Adjust the amplitude (0.2) to control the floating height
     // ref.current.rotation.y += 0.01; // Rotate the sphere
-
     // Other animation or logic can be added here
   });
   

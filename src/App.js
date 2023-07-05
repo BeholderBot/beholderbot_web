@@ -19,15 +19,20 @@ function App() {
 
         <Canvas shadows camera={{ position: [0, 0, 20], fov: 40 }}>
         <Environment preset="park" background />
-        <hemisphereLight intensity={0.5} color="white" groundColor="black" />
-        <Sphere3d color="white"size={2} emissive="black" position={[2, -1, 0]} />
+        <hemisphereLight intensity={0.5} color="red" groundColor="black" />
+        <Sphere3d color="red"size={2} emissive="black" position={[2, 0, 0]} />
         
-        <SphereEye color="black"size={1} emissive="black" position={[2, 3, 5]} />
+        <SphereEye color="black"size={1} emissive="black" position={[1, 3, 7]} />
         <SphereEye color="black"size={1} emissive="black" position={[2, 5, 0]} />
-        <SphereEye color="black"size={1} emissive="black" position={[4, 4, -5]} />
-        <LineDrawing points =  {[[2,3,5], [1, 0, 0]]}></LineDrawing>
-        <LineDrawing points =  {[[2,5,0], [1, 0, 0]]}></LineDrawing>
-        <LineDrawing points =  {[[4,4,-5], [1, 0, 0]]}></LineDrawing>
+        <SphereEye color="black"size={1} emissive="black" position={[0, 4, -7]} />
+        <LineDrawing points =  {[[1,0.5,5], [1, 0, 0]]}></LineDrawing>
+        <LineDrawing points =  {[[1,3,7], [1, 0.5, 5]]}></LineDrawing>
+
+        <LineDrawing points =  {[[4,2,0], [1, 0, 0]]}></LineDrawing>
+        <LineDrawing points =  {[[2,5,0], [4, 2, 0]]}></LineDrawing>
+
+        <LineDrawing points =  {[[1,0,-5], [1, 0, 0]]}></LineDrawing>
+        <LineDrawing points =  {[[0,4,-7], [1,0,-5]]}></LineDrawing>
         
         {/* <Sphere3d color="black" amount={50} size={1} emissive="black" position={[1, 1, -2]} /> */}
         <Eye3d position={[10,10,-4]} />

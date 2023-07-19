@@ -8,19 +8,37 @@ import * as THREE from 'three'
 import Eye3d from "./Eye3D";
 import SphereEye from "./SphereEye"
 import LineDrawing from "./Line"
+import Model from './Model';
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { DDSLoader } from "three-stdlib";
+import { useLoader } from "@react-three/fiber";
+THREE.DefaultLoadingManager.addHandler(/\.dds$/i, new DDSLoader());
 
+
+const Scene = () => {
+  const materials = useLoader(MTLLoader, "Poimandres.mtl");
+  const obj = useLoader(OBJLoader, "mouth.obj", (loader) => {
+    materials.preload();
+    loader.setMaterials(materials);
+  });
+
+  console.log(obj);
+  return <primitive object={obj} scale={0.4} />;
+};
  
 function App() {
-  const pointLightRef = useRef()
+  const pointLightRef = useRef();
+  const modelUrl = '/Users/muskan/USC/Semio/beholderbot_web/src/mouth.stl';
  
   return (
     <>
-        <div style = {{height:"100vh", background: "#474746" } }> 
+   <div style = {{height:"100vh", background: "#474746" } }> 
 
         <Canvas shadows camera={{ position: [0, 0, 20], fov: 40 }}>
-        <Environment preset="park" background />
+        <Environment preset="night" background />
         <hemisphereLight intensity={0.5} color="red" groundColor="black" />
-        <Sphere3d color="red"size={2} emissive="black" position={[2, 0, 0]} />
+        {/* <Sphere3d color="red"size={2} emissive="black" position={[2, 0, 0]} /> */}
         
         <SphereEye color="black"size={1} emissive="black" position={[1, 3, 7]} />
         <SphereEye color="black"size={1} emissive="black" position={[2, 5, 0]} />
@@ -41,9 +59,13 @@ function App() {
         
         {/* <ContactShadows renderOrder={2} color="black" resolution={1024} frames={1} scale={10} blur={1.5} opacity={0.65} far={0.5} /> */}
         <BakeShadows />
+        <Model />
+        <Scene/>
         <OrbitControls autoRotateSpeed={0.85} zoomSpeed={0.75}minAzimuthAngle={-Math.PI}  maxAzimuthAngle={Math.PI} minPolarAngle={Math.PI / 2.5} maxPolarAngle={Math.PI / 2.55} />
         </Canvas>
+
         </div>
+        
         </>
   );
 }
